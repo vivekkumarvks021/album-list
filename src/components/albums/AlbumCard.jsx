@@ -1,67 +1,69 @@
 import { MdDelete, MdEdit } from "react-icons/md";
 
 function AlbumCard({ album, handleEdit, handleDelete }) {
+  const actionButtonClass = `
+      w-10
+      h-10
+      rounded-full
+      bg-white
+      shadow-md
+      flex
+      items-center
+      justify-center
+      transition
+      hover:scale-105
+    `;
+
   return (
     <div className="group cursor-pointer">
       {/* Album Box */}
       <div
         className="
+          relative
           aspect-square
-          rounded-3xl
-          bg-white
           overflow-hidden
+          rounded-3xl
           border
           border-zinc-200
+          bg-white
           shadow-sm
-          relative
         "
       >
-        {/* Hover Actions */}
+        {/* Actions */}
         <div
           className="
             absolute
             top-3
             right-3
+            z-10
             flex
             gap-2
             opacity-0
+            transition-opacity
             group-hover:opacity-100
-            transition
           "
         >
-          {/* Edit */}
           <button
             onClick={() => handleEdit(album)}
-            className="
-              w-10
-              h-10
-              rounded-full
-              bg-white
-              shadow-md
-              flex
-              items-center
-              justify-center
-              text-blue-600
-            "
+            className={`${actionButtonClass} text-blue-600`}
           >
             <MdEdit size={20} />
           </button>
 
-          {/* Delete */}
           <button
             onClick={() => handleDelete(album.id)}
-            className="w-10 h-10 rounded-full bg-white shadow-md flex items-center justify-center text-red-500 "
+            className={`${actionButtonClass} text-red-500`}
           >
             <MdDelete size={20} />
           </button>
         </div>
 
-        {/* Folder */}
+        {/* Thumbnail */}
         <div
           className="
-            w-full
-            h-full
             flex
+            h-full
+            w-full
             items-center
             justify-center
             bg-gradient-to-br
@@ -80,8 +82,8 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
           className="
             text-[15px]
             font-semibold
-            text-zinc-800
             capitalize
+            text-zinc-800
           "
         >
           {album.title}

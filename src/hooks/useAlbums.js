@@ -9,9 +9,12 @@ import {
 
 function useAlbums() {
   const [albums, setAlbums] = useState([]);
-  const [isAdding, setIsAdding] = useState(false);
+
   const [title, setTitle] = useState("");
+
   const [editingAlbum, setEditingAlbum] = useState(null);
+
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     getAlbums();
@@ -27,33 +30,39 @@ function useAlbums() {
     }
   };
 
+  const resetForm = () => {
+    setTitle("");
+
+    setEditingAlbum(null);
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title.trim()) return;
+    const trimmedTitle = title.trim();
+
+    if (!trimmedTitle) return;
 
     try {
-      setIsAdding(true);
+      setLoading(true);
 
       // UPDATE
-      if (editingAlbum) {
+      if (!!editingAlbum) {
         await updateAlbum(editingAlbum.id, {
-          title,
+          title: trimmedTitle,
           userId: 1,
         });
 
-        const updatedAlbums = albums.map((album) => {
-          if (album.id === editingAlbum.id) {
-            return {
-              ...album,
-              title,
-            };
-          }
-
-          return album;
-        });
-
-        setAlbums(updatedAlbums);
+        setAlbums((prevAlbums) =>
+          prevAlbums.map((album) =>
+            album.id === editingAlbum.id
+              ? {
+                  ...album,
+                  title: trimmedTitle,
+                }
+              : album,
+          ),
+        );
 
         setEditingAlbum(null);
       }
@@ -61,24 +70,23 @@ function useAlbums() {
       // CREATE
       else {
         const response = await createAlbum({
-          title,
+          title: trimmedTitle,
           userId: 1,
         });
 
-        setAlbums([response.data, ...albums]);
+        setAlbums((prevAlbums) => [response.data, ...prevAlbums]);
       }
 
-      setTitle("");
+      resetForm();
     } catch (error) {
       console.log(error);
     } finally {
-      setIsAdding(false);
+      setLoading(false);
     }
   };
 
   const handleEdit = (album) => {
     setTitle(album.title);
-
     setEditingAlbum(album);
   };
 
@@ -87,9 +95,9 @@ function useAlbums() {
       const response = await removeAlbum(id);
 
       if (response.status === 200) {
-        const updatedAlbums = albums.filter((album) => album.id !== id);
-
-        setAlbums(updatedAlbums);
+        setAlbums((prevAlbums) =>
+          prevAlbums.filter((album) => album.id !== id),
+        );
       }
     } catch (error) {
       console.log(error);
@@ -100,8 +108,8 @@ function useAlbums() {
     albums,
     title,
     setTitle,
-    isAdding,
     editingAlbum,
+    loading,
     handleSubmit,
     handleEdit,
     handleDelete,

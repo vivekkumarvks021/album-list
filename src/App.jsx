@@ -8,7 +8,7 @@ function App() {
     albums,
     title,
     setTitle,
-    isAdding,
+    loading,
     editingAlbum,
     handleSubmit,
     handleEdit,
@@ -21,7 +21,7 @@ function App() {
         {/* Header */}
         <div className="mb-10">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-900">
-            Album Listing
+            Album Collection
           </h1>
 
           <p className="text-zinc-500 mt-2">Your album collection</p>
@@ -31,7 +31,7 @@ function App() {
           title={title}
           setTitle={setTitle}
           handleSubmit={handleSubmit}
-          isAdding={isAdding}
+          loading={loading}
           editingAlbum={editingAlbum}
         />
 

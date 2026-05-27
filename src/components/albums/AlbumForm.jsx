@@ -1,11 +1,14 @@
-function AlbumForm({ title, setTitle, handleSubmit, isAdding, editingAlbum }) {
-  const buttonText = isAdding
-    ? editingAlbum
-      ? "Updating..."
-      : "Adding..."
-    : editingAlbum
-      ? "Update Album"
-      : "Add Album";
+function AlbumForm({ title, setTitle, handleSubmit, loading, editingAlbum }) {
+  const isEditing = Boolean(editingAlbum);
+  let buttonText = "Add Album";
+
+  if (loading && isEditing) {
+    buttonText = "Updating...";
+  } else if (loading) {
+    buttonText = "Adding...";
+  } else if (isEditing) {
+    buttonText = "Update Album";
+  }
 
   return (
     <form
@@ -38,7 +41,7 @@ function AlbumForm({ title, setTitle, handleSubmit, isAdding, editingAlbum }) {
 
       <button
         type="submit"
-        disabled={isAdding}
+        disabled={loading}
         className=" h-14 px-8 rounded-2xl bg-black text-white disabled:opacity-50 disabled:cursor-not-allowed"
       >
         {buttonText}
