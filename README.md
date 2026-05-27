@@ -1,18 +1,73 @@
-# React + Vite
+# 🎵 Album Collection App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + Tailwind CSS based Album Management application built using JSX.  
+It performs full CRUD operations using JSONPlaceholder fake REST API.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 🚀 Features
 
-## React Compiler
+- Fetch albums from API
+- Add new album
+- Update existing album
+- Delete album
+- Responsive album grid UI
+- Hover actions (Edit / Delete icons)
+- Loading state handling
+- Clean component architecture
+- Custom hook based logic separation
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+---
 
-Note: This will impact Vite dev & build performances.
+## 🛠️ Tech Stack
 
-## Expanding the ESLint configuration
+- React (Vite)
+- JSX
+- Tailwind CSS
+- Axios
+- React Icons
+- JSONPlaceholder API
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🌐 API Used
+
+https://jsonplaceholder.typicode.com/albums
+
+---
+
+## 📁 Project Structure
+
+src/
+│
+├── components/
+│ └── albums/
+│ ├── AlbumCard.jsx
+│ ├── AlbumForm.jsx
+│ └── AlbumList.jsx
+│
+├── hooks/
+│ └── useAlbums.js
+│
+├── services/
+│ └── albumApi.js
+│
+├── App.jsx
+├── main.jsx
+└── index.css
+
+---
+
+## ⚙️ Installation
+
+### 1. Clone the repo
+
+git clone <repo-url>
+
+### 2. Install dependencies
+
+npm install
+
+### 3. Run the project
+
+npm run dev

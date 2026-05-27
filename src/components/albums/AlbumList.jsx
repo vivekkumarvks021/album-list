@@ -1,10 +1,13 @@
 import AlbumCard from "./AlbumCard";
 
 function AlbumList({ albums, handleEdit, handleDelete }) {
+  // Show fallback UI when no albums exist
   if (!albums.length) {
     return <p className="text-zinc-500">No albums found.</p>;
   }
+
   return (
+    // Albums grid layout
     <div
       className="
         grid
@@ -16,6 +19,7 @@ function AlbumList({ albums, handleEdit, handleDelete }) {
         xl:grid-cols-6
       "
     >
+      {/* Render album cards */}
       {albums.map((album) => (
         <AlbumCard
           key={album.id}

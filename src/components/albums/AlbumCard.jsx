@@ -1,22 +1,24 @@
 import { MdDelete, MdEdit } from "react-icons/md";
 
 function AlbumCard({ album, handleEdit, handleDelete }) {
+  // Shared styles for action buttons
   const actionButtonClass = `
-      w-10
-      h-10
-      rounded-full
-      bg-white
-      shadow-md
-      flex
-      items-center
-      justify-center
-      transition
-      hover:scale-105
-    `;
+    w-10
+    h-10
+    rounded-full
+    bg-white
+    shadow-md
+    flex
+    items-center
+    justify-center
+    transition
+    hover:scale-105
+  `;
 
   return (
+    // Parent wrapper for hover interaction
     <div className="group cursor-pointer">
-      {/* Album Box */}
+      {/* Album Card */}
       <div
         className="
           relative
@@ -29,7 +31,7 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
           shadow-sm
         "
       >
-        {/* Actions */}
+        {/* Action Buttons */}
         <div
           className="
             absolute
@@ -43,6 +45,7 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
             group-hover:opacity-100
           "
         >
+          {/* Edit Button */}
           <button
             onClick={() => handleEdit(album)}
             className={`${actionButtonClass} text-blue-600`}
@@ -50,6 +53,7 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
             <MdEdit size={20} />
           </button>
 
+          {/* Delete Button */}
           <button
             onClick={() => handleDelete(album.id)}
             className={`${actionButtonClass} text-red-500`}
@@ -58,7 +62,7 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
           </button>
         </div>
 
-        {/* Thumbnail */}
+        {/* Album Thumbnail */}
         <div
           className="
             flex
@@ -76,7 +80,7 @@ function AlbumCard({ album, handleEdit, handleDelete }) {
         </div>
       </div>
 
-      {/* Title */}
+      {/* Album Title */}
       <div className="mt-4 px-1">
         <h2
           className="

@@ -1,5 +1,8 @@
 function AlbumForm({ title, setTitle, handleSubmit, loading, editingAlbum }) {
+  // Check whether form is in edit mode
   const isEditing = Boolean(editingAlbum);
+
+  // Dynamic button text based on form state
   let buttonText = "Add Album";
 
   if (loading && isEditing) {
@@ -11,6 +14,7 @@ function AlbumForm({ title, setTitle, handleSubmit, loading, editingAlbum }) {
   }
 
   return (
+    // Album form
     <form
       onSubmit={handleSubmit}
       className="
@@ -20,6 +24,7 @@ function AlbumForm({ title, setTitle, handleSubmit, loading, editingAlbum }) {
         mb-10
       "
     >
+      {/* Album title input */}
       <input
         type="text"
         placeholder="Enter album title..."
@@ -34,15 +39,24 @@ function AlbumForm({ title, setTitle, handleSubmit, loading, editingAlbum }) {
           border-zinc-300
           bg-white
           outline-none
-          focus:border-black
           transition
+          focus:border-black
         "
       />
 
+      {/* Submit button */}
       <button
         type="submit"
         disabled={loading}
-        className=" h-14 px-8 rounded-2xl bg-black text-white disabled:opacity-50 disabled:cursor-not-allowed"
+        className="
+          h-14
+          px-8
+          rounded-2xl
+          bg-black
+          text-white
+          disabled:opacity-50
+          disabled:cursor-not-allowed
+        "
       >
         {buttonText}
       </button>
